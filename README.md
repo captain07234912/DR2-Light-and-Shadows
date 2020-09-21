@@ -1,1 +1,5 @@
-# DR2-Light-and-Shadows
+# Ejercicio-OBJ
+
+principal es el creatoralligator y el modelo que se tiene que cargar es un charizard
+
+
