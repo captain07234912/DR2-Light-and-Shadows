@@ -1,5 +1,7 @@
-# Ejercicio-OBJ
+# 
+DR2-Light-and-Shadows
 
-principal es el creatoralligator y el modelo que se tiene que cargar es un charizard
+principal es el glRaytracer yla salida es un snowman23
+
 
 
