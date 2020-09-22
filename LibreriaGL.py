@@ -216,3 +216,13 @@ def magnum2(vector):
 
         return 0
     return largo
+
+
+
+def Suma(list1, list2):
+    suma = []
+    if (len(list2) >= len(list1)):
+        for i in range(len(list1)):
+
+            suma.append(list1[i] + list2[i])
+    return suma

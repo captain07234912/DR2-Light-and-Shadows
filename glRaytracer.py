@@ -1,8 +1,7 @@
 from LibreriaGL import *
 from ModelObj import *
-from Sphere import *
+from Sphere import  Sphere, Material, Light
 from Render import Render
-from Sphere import Light
 import random
 
 """
@@ -26,19 +25,14 @@ Azulado = Material(diffuse= color(0,0,1))
 
 #################################################################################
 
-width = 500
-height = 300
+width = 700
+height = 700
 
 prueba = Render(width,height)
-
-
-prueba.light = Light(position = (-5,5,0), intensity= 1.5)
-
+prueba.light= Light(position = (-5,5,0), intensity= 1.5)
 
 
 # pa que corra todo junto y no separado
-
-
 
         #      coordenada x,y,z radio , material
 prueba.scene = [Sphere((0,1,-10),1.5,Snow),

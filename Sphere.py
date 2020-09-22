@@ -31,8 +31,8 @@ class Material (object):
 class Intersect (object):
     def __init__(self,distance, point, normal):
         self.distance = distance
+        self.normal = normal
         self.point = point
-        self.point = normal
 class Sphere(object):
     def __init__(self, center, radius, material ):
         self.center = center
@@ -56,15 +56,14 @@ class Sphere(object):
 
         if t0 < 0:  # t0 ahora es t1
             return None
-        hit =[0,0,0]
 
-        hit[0] = dir[0] * t0 + orig[0]
-        hit[1] = dir[1] * t0  + orig[1]
-        hit[2] = dir[2] * t0 + orig[2]
+        dir =[ dir[0]*t0,
+             dir[1]*t0,
+             dir[2]*t0]
 
-        normal = np.subtract(hit,self.center)
-        normal = normal / np.linalg.norm(normal)
+        point = Suma(orig,dir)
+        normal1 = magnum(point,self.center)
+        normal1 = normal(normal1)
 
 
-
-        return  Intersect(distance= t0, point= hit,normal = normal)
+        return  Intersect(distance= t0, point= point, normal = normal1)

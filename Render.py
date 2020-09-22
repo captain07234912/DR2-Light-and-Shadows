@@ -28,7 +28,7 @@ class Render(object):
         self.fov = 60
         self.scene =[]
 
-        self.light = None
+        self.pointlight = None
 
         #luz de direccion
 
@@ -563,7 +563,7 @@ class Render(object):
         for y in range(self.height):
             for x in range(self.width):
 
-                #  NDC (-1 a 1)
+
                 Px = 2 * ( (x+0.5) / self.width) - 1
                 Py = 2 * ( (y+0.5) / self.height) - 1
 
@@ -573,7 +573,6 @@ class Render(object):
                 Px *= r
                 Py *= t
 
-                #z siempre viendo enfrente
                 direction = [Px, Py, -1]
                 direction = normal(direction)
                 material = None
@@ -586,29 +585,23 @@ class Render(object):
                             material = obj.material
                             intersect = hit
                 if material is not None:
-
-
-
-                            light_dir = np.subtract(self.light.position, intersect.point)
-                            light_dir = light_dir / np.linalg.norm(light_dir)
-                            intensity = self.light.intensity * max(0,np.dot(light_dir, intersect.normal))
+                            light_dir = magnum(self.light.position, intersect.point)
+                            light_dir = normal(light_dir)
+                            intensity = self.light.intensity * max(0,productopunto(light_dir, intersect.normal))
                             r = intensity * self.light.color[2] / 255
                             g = intensity * self.light.color[1] / 255
                             b = intensity * self.light.color[0] / 255
 
-                            r *= material.diffuse[2] / 255
-                            g*= material.diffuse[1] / 255
-                            b *= material.diffuse[0] / 255
+                            r *= material.diffuse[2]
+                            g *= material.diffuse[1]
+                            b *= material.diffuse[0]
+
+                            print(r)
+                            print(g)
 
 
                             self.glVertex_coord(x,y, color(min(1,r),min(1,g),min(1,b)))
 
 
-
-
-
-
-
-               # self.pixels[y][x] = color(max(min((Px+1)/ 2, 1),0) ,max(min((Py+1)/2,1),0),1)
 
 
